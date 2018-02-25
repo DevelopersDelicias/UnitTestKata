@@ -28,6 +28,11 @@ public class HelloWorldTest {
 		assertSayHelloWorksAsExpectedWith(name, "Hello Stranger!");
 	}
 
+	@Test(expected = MalformedNameException.class)
+	public void cannot_say_hello_to_malformed_names() {
+		helloWorld.sayHello("Benjamin1");
+	}
+
 	private void assertSayHelloWorksAsExpectedWith(String name, String expected) {
 		assertEquals(expected, helloWorld.sayHello(name));
 	}

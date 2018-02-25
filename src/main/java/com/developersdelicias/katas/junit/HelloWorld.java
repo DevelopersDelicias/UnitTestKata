@@ -6,6 +6,9 @@ public class HelloWorld {
 		if (name == null || name.trim().isEmpty())
 			return "Hello Stranger!";
 
+		if (name.contains("1"))
+			throw new MalformedNameException();
+
 		return "Hello " + name + "!";
 	}
 }
