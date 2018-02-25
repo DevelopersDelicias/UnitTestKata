@@ -7,7 +7,7 @@ public class HelloWorld {
 			return "Hello Stranger!";
 
 		if (isMalformed(name))
-			throw new MalformedNameException();
+			throw new MalformedNameException(name + " is not a valid name");
 
 		return "Hello " + name + "!";
 	}

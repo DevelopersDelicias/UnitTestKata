@@ -2,13 +2,19 @@ package com.developersdelicias.katas.junit;
 
 import junitparams.JUnitParamsRunner;
 import junitparams.Parameters;
-import org.junit.*;
+import org.junit.Before;
+import org.junit.Rule;
+import org.junit.Test;
+import org.junit.rules.ExpectedException;
 import org.junit.runner.RunWith;
 
+import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.assertEquals;
 
 @RunWith(JUnitParamsRunner.class)
 public class HelloWorldTest {
+	@Rule
+	public ExpectedException expectedException = ExpectedException.none();
 	private HelloWorld helloWorld;
 
 	@Before
@@ -28,10 +34,22 @@ public class HelloWorldTest {
 		assertSayHelloWorksAsExpectedWith(name, "Hello Stranger!");
 	}
 
-	@Test(expected = MalformedNameException.class)
-	@Parameters({"Benjamin1", "Alonso33", "123Juan", "$Pedro"})
-	public void cannot_say_hello_to_malformed_names(String name) {
+	@Test
+	@Parameters(method = "malformedNamesAndExpectedMessages")
+	public void informs_when_a_name_is_malformed(String name, String expectedMessage) {
+		expectedException.expect(MalformedNameException.class);
+		expectedException.expectMessage(is(expectedMessage));
+
 		sayHello(name);
+	}
+
+	@SuppressWarnings("unused")
+	private String[][] malformedNamesAndExpectedMessages() {
+		return new String[][]{
+				new String[]{"Benjamin1", "Benjamin1 is not a valid name"},
+				new String[]{"Alonso234", "Alonso234 is not a valid name"},
+				new String[]{"JorgeX", "JorgeX is not a valid name"},
+		};
 	}
 
 	private void assertSayHelloWorksAsExpectedWith(String name, String expected) {
