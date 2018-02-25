@@ -6,7 +6,7 @@ public class HelloWorld {
 		if (name == null || name.trim().isEmpty())
 			return "Hello Stranger!";
 
-		if (name.contains("1"))
+		if (!name.matches("[A-Z][a-z]+"))
 			throw new MalformedNameException();
 
 		return "Hello " + name + "!";

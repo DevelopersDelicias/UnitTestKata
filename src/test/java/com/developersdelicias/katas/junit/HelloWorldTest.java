@@ -29,12 +29,17 @@ public class HelloWorldTest {
 	}
 
 	@Test(expected = MalformedNameException.class)
-	public void cannot_say_hello_to_malformed_names() {
-		helloWorld.sayHello("Benjamin1");
+	@Parameters({"Benjamin1", "Alonso33", "123Juan", "$Pedro"})
+	public void cannot_say_hello_to_malformed_names(String name) {
+		sayHello(name);
 	}
 
 	private void assertSayHelloWorksAsExpectedWith(String name, String expected) {
-		assertEquals(expected, helloWorld.sayHello(name));
+		assertEquals(expected, sayHello(name));
+	}
+
+	private String sayHello(String name) {
+		return helloWorld.sayHello(name);
 	}
 
 	@SuppressWarnings("unused")
