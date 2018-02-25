@@ -1,44 +1,39 @@
 package com.developersdelicias.katas.junit;
 
+import junitparams.JUnitParamsRunner;
+import junitparams.Parameters;
 import org.junit.*;
+import org.junit.runner.RunWith;
 
 import static org.junit.Assert.assertEquals;
 
+@RunWith(JUnitParamsRunner.class)
 public class HelloWorldTest {
 	private HelloWorld helloWorld;
 
-	@BeforeClass
-	public static void setUpOnce() {
-		System.out.println("*** Setup once for all tests");
-	}
 	@Before
 	public void setUp() {
-		System.out.println("+++ Setup before each test");
 		helloWorld = new HelloWorld();
 	}
 
 	@Test
-	public void can_say_hello_to_a_given_name() {
-		System.out.println("Testing normal names scenarios");
-		assertEquals("Hello Benjamin!", helloWorld.sayHello("Benjamin"));
-		assertEquals("Hello Alonso!", helloWorld.sayHello("Alonso"));
+	@Parameters({"Benjamin, Hello Benjamin!", "Alonso, Hello Alonso!", "Brian, Hello Brian!"})
+	public void can_say_hello_to_a_given_name(String name, String expected) {
+		assertSayHelloWorksAsExpectedWith(name, expected);
 	}
 
 	@Test
-	public void can_say_hello_to_strangers() {
-		System.out.println("Testing empty names scenarios");
-		assertEquals("Hello Stranger!", helloWorld.sayHello(null));
-		assertEquals("Hello Stranger!", helloWorld.sayHello(""));
-		assertEquals("Hello Stranger!", helloWorld.sayHello("     "));
+	@Parameters(method = "emptyNames")
+	public void can_say_hello_to_strangers(String name) {
+		assertSayHelloWorksAsExpectedWith(name, "Hello Stranger!");
 	}
 
-	@After
-	public void tearDown() {
-		System.out.println("--- Tear down after each test");
+	private void assertSayHelloWorksAsExpectedWith(String name, String expected) {
+		assertEquals(expected, helloWorld.sayHello(name));
 	}
 
-	@AfterClass
-	public static void tearDownClass() {
-		System.out.println("@@@ Tear down all tests");
+	@SuppressWarnings("unused")
+	private String[] emptyNames() {
+		return new String[]{null, "", "       "};
 	}
 }
