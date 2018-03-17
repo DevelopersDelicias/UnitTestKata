@@ -26,6 +26,7 @@ public class SpanishNumberNameTest {
 	@SuppressWarnings("unused")
 	private Object parametersForCan_say_its_name() {
 		return new Object[][]{
+				new Object[]{0, "Cero"},
 				new Object[]{1, "Uno"},
 				new Object[]{2, "Dos"},
 				new Object[]{3, "Tres"},

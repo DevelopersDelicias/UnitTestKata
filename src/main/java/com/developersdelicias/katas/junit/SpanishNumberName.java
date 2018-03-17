@@ -10,6 +10,7 @@ public class SpanishNumberName {
 
 	private static Map<Integer, String> createNumberNamesMap() {
 		Map<Integer, String> map = new HashMap<>();
+		map.put(0, "Cero");
 		map.put(1, "Uno");
 		map.put(2, "Dos");
 		map.put(3, "Tres");
