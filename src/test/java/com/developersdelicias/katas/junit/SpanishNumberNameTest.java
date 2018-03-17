@@ -105,6 +105,16 @@ public class SpanishNumberNameTest {
 				number(103, "Ciento tres"),
 				number(104, "Ciento cuatro"),
 				number(127, "Ciento veintisiete"),
+				number(130, "Ciento treinta"),
+				number(131, "Ciento treinta y uno"),
+				number(132, "Ciento treinta y dos"),
+				number(145, "Ciento cuarenta y cinco"),
+				number(153, "Ciento cincuenta y tres"),
+				number(167, "Ciento sesenta y siete"),
+				number(172, "Ciento setenta y dos"),
+				number(186, "Ciento ochenta y seis"),
+				number(196, "Ciento noventa y seis"),
+				number(199, "Ciento noventa y nueve"),
 		};
 	}
 

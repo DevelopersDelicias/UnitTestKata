@@ -62,19 +62,23 @@ public class SpanishNumberName {
 	public String name() {
 
 		if (this.value > 100) {
-			return "Ciento " + NUMBER_NAMES.get(this.value - 100).toLowerCase();
+			return "Ciento " + unitsOrTens(this.value - 100).toLowerCase();
 		}
 
-		String name = NUMBER_NAMES.get(this.value);
+		return unitsOrTens(this.value);
+	}
+
+	private String unitsOrTens(int currentValue) {
+		String name = NUMBER_NAMES.get(currentValue);
 
 		if (name == null) {
-			int aTen = (this.value / 10) * 10;
-			return tenPlusUnits(aTen);
+			int aTen = (currentValue / 10) * 10;
+			return tenPlusUnits(aTen, currentValue);
 		}
 		return name;
 	}
 
-	private String tenPlusUnits(int aTen) {
-		return NUMBER_NAMES.get(aTen) + " y " + NUMBER_NAMES.get(this.value - aTen).toLowerCase();
+	private String tenPlusUnits(int aTen, int currentValue) {
+		return NUMBER_NAMES.get(aTen) + " y " + NUMBER_NAMES.get(currentValue - aTen).toLowerCase();
 	}
 }
