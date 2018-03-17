@@ -101,6 +101,7 @@ public class SpanishNumberNameTest {
 				number(99, "Noventa y nueve"),
 				number(100, "Cien"),
 				number(101, "Ciento uno"),
+				number(102, "Ciento dos"),
 		};
 	}
 
