@@ -50,6 +50,7 @@ public class SpanishNumberName {
 		map.put(100, "Cien");
 		map.put(200, "Doscientos");
 		map.put(300, "Trescientos");
+		map.put(400, "Cuatrocientos");
 		return map;
 	}
 
@@ -62,20 +63,26 @@ public class SpanishNumberName {
 	}
 
 	public String name() {
+		if (hasExistingName())
+			return currentName();
 
-		if (isCent(300)) {
-			return centPlusElse(300);
+		int cent = makeCent();
+		if (isCent(cent)) {
+			return centPlusElse(cent);
 		}
-
-		if (isCent(200)) {
-			return centPlusElse(200);
-		}
-
-		if (isCent(100)) {
-			return centPlusElse(100);
-		}
-
 		return unitsOrTens(this.value);
+	}
+
+	private int makeCent() {
+		return (this.value / 100) * 100;
+	}
+
+	private String currentName() {
+		return nameOf(this.value);
+	}
+
+	private boolean hasExistingName() {
+		return currentName() != null;
 	}
 
 	private String centPlusElse(int cent) {
@@ -83,17 +90,17 @@ public class SpanishNumberName {
 	}
 
 	private boolean isCent(int cent) {
-		return this.value > cent && this.value < cent + 100;
+		return cent >= 100;
 	}
 
 	private String centName(int cent) {
 		if (cent == 100)
 			return "Ciento";
-		return NUMBER_NAMES.get(cent);
+		return nameOf(cent);
 	}
 
 	private String unitsOrTens(int currentValue) {
-		String name = NUMBER_NAMES.get(currentValue);
+		String name = nameOf(currentValue);
 
 		if (name == null) {
 			int aTen = (currentValue / 10) * 10;
@@ -103,6 +110,10 @@ public class SpanishNumberName {
 	}
 
 	private String tenPlusUnits(int aTen, int currentValue) {
-		return NUMBER_NAMES.get(aTen) + " y " + NUMBER_NAMES.get(currentValue - aTen).toLowerCase();
+		return nameOf(aTen) + " y " + nameOf(currentValue - aTen).toLowerCase();
+	}
+
+	private String nameOf(int number) {
+		return NUMBER_NAMES.get(number);
 	}
 }
