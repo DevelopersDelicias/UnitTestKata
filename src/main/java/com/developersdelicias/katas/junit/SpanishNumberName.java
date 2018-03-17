@@ -40,6 +40,7 @@ public class SpanishNumberName {
 		map.put(28, "Veintiocho");
 		map.put(29, "Veintinueve");
 		map.put(30, "Treinta");
+		map.put(40, "Cuarenta");
 		return map;
 	}
 
@@ -52,7 +53,7 @@ public class SpanishNumberName {
 	}
 
 	public String name() {
-		if (this.value > 30) {
+		if (this.value > 30 && this.value < 40) {
 			return NUMBER_NAMES.get(30) + " y " + NUMBER_NAMES.get(this.value - 30).toLowerCase();
 		}
 		return NUMBER_NAMES.get(this.value);
