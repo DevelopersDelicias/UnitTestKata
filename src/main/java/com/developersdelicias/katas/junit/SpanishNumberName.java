@@ -63,15 +63,33 @@ public class SpanishNumberName {
 
 	public String name() {
 
-		if (this.value > 200 && this.value < 300) {
-			return NUMBER_NAMES.get(200) + " " + unitsOrTens(this.value - 200).toLowerCase();
+		if (isCent(300)) {
+			return centPlusElse(300);
 		}
 
-		if (this.value > 100 && this.value < 200) {
-			return "Ciento " + unitsOrTens(this.value - 100).toLowerCase();
+		if (isCent(200)) {
+			return centPlusElse(200);
+		}
+
+		if (isCent(100)) {
+			return centPlusElse(100);
 		}
 
 		return unitsOrTens(this.value);
+	}
+
+	private String centPlusElse(int cent) {
+		return centName(cent) + " " + unitsOrTens(this.value - cent).toLowerCase();
+	}
+
+	private boolean isCent(int cent) {
+		return this.value > cent && this.value < cent + 100;
+	}
+
+	private String centName(int cent) {
+		if (cent == 100)
+			return "Ciento";
+		return NUMBER_NAMES.get(cent);
 	}
 
 	private String unitsOrTens(int currentValue) {
