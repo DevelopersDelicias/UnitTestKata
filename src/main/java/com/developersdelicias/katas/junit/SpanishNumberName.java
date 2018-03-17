@@ -52,8 +52,9 @@ public class SpanishNumberName {
 	}
 
 	public String name() {
+		if (this.value > 30) {
+			return NUMBER_NAMES.get(30) + " y " + NUMBER_NAMES.get(this.value - 30).toLowerCase();
+		}
 		return NUMBER_NAMES.get(this.value);
 	}
-
-
 }
