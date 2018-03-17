@@ -42,6 +42,7 @@ public class SpanishNumberName {
 		map.put(29, "Veintinueve");
 		map.put(30, "Treinta");
 		map.put(40, "Cuarenta");
+		map.put(50, "Cincuenta");
 		return map;
 	}
 
@@ -54,6 +55,10 @@ public class SpanishNumberName {
 	}
 
 	public String name() {
+		if (isBetween(50)) {
+			return tenPlusUnits(50);
+		}
+
 		if (isBetween(40)) {
 			return tenPlusUnits(40);
 		}
