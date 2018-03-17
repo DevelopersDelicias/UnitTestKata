@@ -54,13 +54,21 @@ public class SpanishNumberName {
 	}
 
 	public String name() {
-		if (this.value > 40 && this.value < 50) {
-			return NUMBER_NAMES.get(40) + " y " + NUMBER_NAMES.get(this.value - 40).toLowerCase();
+		if (isBetween(40)) {
+			return tenPlusUnits(40);
 		}
 
-		if (this.value > 30 && this.value < 40) {
-			return NUMBER_NAMES.get(30) + " y " + NUMBER_NAMES.get(this.value - 30).toLowerCase();
+		if (isBetween(30)) {
+			return tenPlusUnits(30);
 		}
 		return NUMBER_NAMES.get(this.value);
+	}
+
+	private String tenPlusUnits(int aTen) {
+		return NUMBER_NAMES.get(aTen) + " y " + NUMBER_NAMES.get(this.value - aTen).toLowerCase();
+	}
+
+	private boolean isBetween(int aTen) {
+		return this.value > aTen && this.value < aTen + 10;
 	}
 }
