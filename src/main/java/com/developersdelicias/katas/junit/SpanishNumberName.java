@@ -61,11 +61,9 @@ public class SpanishNumberName {
 
 	public String name() {
 
-		if (this.value == 101)
-			return "Ciento uno";
-
-		if (this.value == 102)
-			return "Ciento dos";
+		if (this.value > 100) {
+			return "Ciento " + NUMBER_NAMES.get(this.value - 100).toLowerCase();
+		}
 
 		String name = NUMBER_NAMES.get(this.value);
 
