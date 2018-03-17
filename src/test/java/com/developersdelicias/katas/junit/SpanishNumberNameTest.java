@@ -66,6 +66,15 @@ public class SpanishNumberNameTest {
 				new Object[]{38, "Treinta y ocho"},
 				new Object[]{39, "Treinta y nueve"},
 				new Object[]{40, "Cuarenta"},
+				new Object[]{41, "Cuarenta y uno"},
+				new Object[]{42, "Cuarenta y dos"},
+				new Object[]{43, "Cuarenta y tres"},
+				new Object[]{44, "Cuarenta y cuatro"},
+				new Object[]{45, "Cuarenta y cinco"},
+				new Object[]{46, "Cuarenta y seis"},
+				new Object[]{47, "Cuarenta y siete"},
+				new Object[]{48, "Cuarenta y ocho"},
+				new Object[]{49, "Cuarenta y nueve"},
 		};
 	}
 
