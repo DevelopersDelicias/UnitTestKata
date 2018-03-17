@@ -156,6 +156,10 @@ public class SpanishNumberNameTest {
 				number(900, "Novecientos"),
 				number(915, "Novecientos quince"),
 				number(999, "Novecientos noventa y nueve"),
+				number(1000, "Mil"),
+				number(1001, "Mil uno"),
+				number(1011, "Mil once"),
+				number(1099, "Mil noventa y nueve"),
 		};
 	}
 
