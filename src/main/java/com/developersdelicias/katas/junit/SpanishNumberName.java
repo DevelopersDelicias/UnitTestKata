@@ -55,25 +55,16 @@ public class SpanishNumberName {
 	}
 
 	public String name() {
-		if (isBetween(50)) {
-			return tenPlusUnits(50);
-		}
+		String name = NUMBER_NAMES.get(this.value);
 
-		if (isBetween(40)) {
-			return tenPlusUnits(40);
+		if (name == null) {
+			int aTen = (this.value / 10) * 10;
+			return tenPlusUnits(aTen);
 		}
-
-		if (isBetween(30)) {
-			return tenPlusUnits(30);
-		}
-		return NUMBER_NAMES.get(this.value);
+		return name;
 	}
 
 	private String tenPlusUnits(int aTen) {
 		return NUMBER_NAMES.get(aTen) + " y " + NUMBER_NAMES.get(this.value - aTen).toLowerCase();
-	}
-
-	private boolean isBetween(int aTen) {
-		return this.value > aTen && this.value < aTen + 10;
 	}
 }
