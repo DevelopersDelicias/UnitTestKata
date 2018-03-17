@@ -52,6 +52,10 @@ public class SpanishNumberName {
 		map.put(300, "Trescientos");
 		map.put(400, "Cuatrocientos");
 		map.put(500, "Quinientos");
+		map.put(600, "Seiscientos");
+		map.put(700, "Setecientos");
+		map.put(800, "Ochocientos");
+		map.put(900, "Novecientos");
 		return map;
 	}
 

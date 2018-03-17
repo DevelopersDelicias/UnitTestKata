@@ -147,6 +147,15 @@ public class SpanishNumberNameTest {
 				number(507, "Quinientos siete"),
 				number(547, "Quinientos cuarenta y siete"),
 				number(599, "Quinientos noventa y nueve"),
+				number(600, "Seiscientos"),
+				number(658, "Seiscientos cincuenta y ocho"),
+				number(700, "Setecientos"),
+				number(777, "Setecientos setenta y siete"),
+				number(800, "Ochocientos"),
+				number(892, "Ochocientos noventa y dos"),
+				number(900, "Novecientos"),
+				number(915, "Novecientos quince"),
+				number(999, "Novecientos noventa y nueve"),
 		};
 	}
 
