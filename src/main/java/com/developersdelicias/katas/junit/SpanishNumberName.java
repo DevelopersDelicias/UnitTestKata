@@ -43,6 +43,10 @@ public class SpanishNumberName {
 		map.put(30, "Treinta");
 		map.put(40, "Cuarenta");
 		map.put(50, "Cincuenta");
+		map.put(60, "Sesenta");
+		map.put(70, "Setenta");
+		map.put(80, "Ochenta");
+		map.put(90, "Noventa");
 		return map;
 	}
 
