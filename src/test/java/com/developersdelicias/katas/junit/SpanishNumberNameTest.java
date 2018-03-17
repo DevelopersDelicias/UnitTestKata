@@ -138,10 +138,15 @@ public class SpanishNumberNameTest {
 				number(399, "Trescientos noventa y nueve"),
 				number(400, "Cuatrocientos"),
 				number(401, "Cuatrocientos uno"),
+				number(408, "Cuatrocientos ocho"),
 				number(416, "Cuatrocientos dieciséis"),
 				number(478, "Cuatrocientos setenta y ocho"),
 				number(489, "Cuatrocientos ochenta y nueve"),
 				number(498, "Cuatrocientos noventa y ocho"),
+				number(500, "Quinientos"),
+				number(507, "Quinientos siete"),
+				number(547, "Quinientos cuarenta y siete"),
+				number(599, "Quinientos noventa y nueve"),
 		};
 	}
 
