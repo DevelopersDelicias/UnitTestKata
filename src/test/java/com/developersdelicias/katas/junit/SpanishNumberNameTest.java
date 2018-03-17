@@ -116,6 +116,21 @@ public class SpanishNumberNameTest {
 				number(196, "Ciento noventa y seis"),
 				number(199, "Ciento noventa y nueve"),
 				number(200, "Doscientos"),
+				number(201, "Doscientos uno"),
+				number(205, "Doscientos cinco"),
+				number(210, "Doscientos diez"),
+				number(211, "Doscientos once"),
+				number(217, "Doscientos diecisiete"),
+				number(218, "Doscientos dieciocho"),
+				number(225, "Doscientos veinticinco"),
+				number(238, "Doscientos treinta y ocho"),
+				number(245, "Doscientos cuarenta y cinco"),
+				number(256, "Doscientos cincuenta y seis"),
+				number(263, "Doscientos sesenta y tres"),
+				number(274, "Doscientos setenta y cuatro"),
+				number(287, "Doscientos ochenta y siete"),
+				number(291, "Doscientos noventa y uno"),
+				number(299, "Doscientos noventa y nueve"),
 		};
 	}
 

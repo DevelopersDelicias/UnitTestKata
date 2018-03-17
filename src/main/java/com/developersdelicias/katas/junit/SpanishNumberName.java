@@ -62,6 +62,10 @@ public class SpanishNumberName {
 
 	public String name() {
 
+		if (this.value > 200 && this.value < 300) {
+			return NUMBER_NAMES.get(200) + " " + unitsOrTens(this.value - 200).toLowerCase();
+		}
+
 		if (this.value > 100 && this.value < 200) {
 			return "Ciento " + unitsOrTens(this.value - 100).toLowerCase();
 		}
