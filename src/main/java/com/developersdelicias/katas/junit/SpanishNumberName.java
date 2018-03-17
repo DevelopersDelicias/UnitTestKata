@@ -47,6 +47,7 @@ public class SpanishNumberName {
 		map.put(70, "Setenta");
 		map.put(80, "Ochenta");
 		map.put(90, "Noventa");
+		map.put(100, "Cien");
 		return map;
 	}
 
