@@ -60,6 +60,10 @@ public class SpanishNumberName {
 	}
 
 	public String name() {
+
+		if (this.value == 101)
+			return "Ciento uno";
+
 		String name = NUMBER_NAMES.get(this.value);
 
 		if (name == null) {

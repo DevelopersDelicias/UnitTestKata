@@ -100,6 +100,7 @@ public class SpanishNumberNameTest {
 				new Object[]{90, "Noventa"},
 				new Object[]{99, "Noventa y nueve"},
 				new Object[]{100, "Cien"},
+				new Object[]{101, "Ciento uno"},
 		};
 	}
 
