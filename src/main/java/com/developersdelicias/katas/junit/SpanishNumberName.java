@@ -48,6 +48,7 @@ public class SpanishNumberName {
 		map.put(80, "Ochenta");
 		map.put(90, "Noventa");
 		map.put(100, "Cien");
+		map.put(200, "Doscientos");
 		return map;
 	}
 
@@ -61,7 +62,7 @@ public class SpanishNumberName {
 
 	public String name() {
 
-		if (this.value > 100) {
+		if (this.value > 100 && this.value < 200) {
 			return "Ciento " + unitsOrTens(this.value - 100).toLowerCase();
 		}
 

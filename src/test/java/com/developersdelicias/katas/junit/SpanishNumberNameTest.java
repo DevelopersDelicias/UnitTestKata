@@ -115,6 +115,7 @@ public class SpanishNumberNameTest {
 				number(186, "Ciento ochenta y seis"),
 				number(196, "Ciento noventa y seis"),
 				number(199, "Ciento noventa y nueve"),
+				number(200, "Doscientos"),
 		};
 	}
 
