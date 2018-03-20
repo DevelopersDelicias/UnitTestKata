@@ -75,7 +75,10 @@ public class SpanishNumberName {
 		int currentValue = this.value;
 		int thousands = withoutRemaining(currentValue, 1000);
 		if (thousands >= 1000) {
-			return nameOf(1000) + " " + centsTensAndUnits(currentValue % 1000).toLowerCase();
+			String thousandName = thousands == 1000 ? nameOf(1000) : nameOf(thousands / 1000) + " " + nameOf(1000).toLowerCase();
+			if (currentValue % 1000 == 0)
+				return thousandName;
+			return thousandName + " " + centsTensAndUnits(currentValue % 1000).toLowerCase();
 		}
 
 		return centsTensAndUnits(currentValue);
