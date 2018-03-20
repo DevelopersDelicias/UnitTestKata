@@ -4,9 +4,11 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class SpanishNumberName {
+	private static final int THOUSAND = 1000;
 	private final int value;
 
 	private static final Map<Integer, String> NUMBER_NAMES = createNumberNamesMap();
+	private static final String THOUSAND_NAME = "Mil";
 
 	private static Map<Integer, String> createNumberNamesMap() {
 		Map<Integer, String> map = new HashMap<>();
@@ -56,7 +58,6 @@ public class SpanishNumberName {
 		map.put(700, "Setecientos");
 		map.put(800, "Ochocientos");
 		map.put(900, "Novecientos");
-		map.put(1000, "Mil");
 		return map;
 	}
 
@@ -73,15 +74,25 @@ public class SpanishNumberName {
 			return currentName();
 
 		int currentValue = this.value;
-		int thousands = withoutRemaining(currentValue, 1000);
-		if (thousands >= 1000) {
-			String thousandName = thousands == 1000 ? nameOf(1000) : centsTensAndUnits(thousands / 1000) + " " + nameOf(1000).toLowerCase();
-			if (currentValue % 1000 == 0)
+		int thousands = withoutRemaining(currentValue, THOUSAND);
+		if (thousands >= THOUSAND) {
+			String thousandName = thousandNameFor(thousands);
+			if (isDivisibleBy(currentValue, THOUSAND))
 				return thousandName;
-			return thousandName + " " + centsTensAndUnits(currentValue % 1000).toLowerCase();
+			return thousandName + " " + centsTensAndUnits(currentValue % THOUSAND).toLowerCase();
 		}
 
 		return centsTensAndUnits(currentValue);
+	}
+
+	private String thousandNameFor(int thousands) {
+		return thousands == THOUSAND
+				? THOUSAND_NAME
+				: centsTensAndUnits(thousands / THOUSAND) + " " + THOUSAND_NAME.toLowerCase();
+	}
+
+	private boolean isDivisibleBy(int currentValue, int divisor) {
+		return currentValue % divisor == 0;
 	}
 
 	private String centsTensAndUnits(int currentValue) {
