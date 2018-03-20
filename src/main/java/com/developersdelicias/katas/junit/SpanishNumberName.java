@@ -74,6 +74,17 @@ public class SpanishNumberName {
 			return currentName();
 
 		int currentValue = this.value;
+
+		if (currentValue >= 1_000_000) {
+			int millionPart = currentValue / 1_000_000;
+
+			return millionPart == 1 ? "Un millón" : thousandsCentsTensAndUnits(millionPart) + " millones";
+		}
+
+		return thousandsCentsTensAndUnits(currentValue);
+	}
+
+	private String thousandsCentsTensAndUnits(int currentValue) {
 		int thousands = withoutRemaining(currentValue, THOUSAND);
 		if (thousands >= THOUSAND) {
 			String thousandName = thousandNameFor(thousands);
