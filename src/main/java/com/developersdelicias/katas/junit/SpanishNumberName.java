@@ -82,6 +82,9 @@ public class SpanishNumberName {
 	}
 
 	private String centsTensAndUnits(int currentValue) {
+		if (nameOf(currentValue) != null)
+			return nameOf(currentValue);
+
 		int cent = withoutRemaining(currentValue, 100);
 		if (isCent(cent)) {
 			return centPlusElse(cent, currentValue);

@@ -160,6 +160,7 @@ public class SpanishNumberNameTest {
 				number(1001, "Mil uno"),
 				number(1011, "Mil once"),
 				number(1099, "Mil noventa y nueve"),
+				number(1100, "Mil cien"),
 		};
 	}
 
