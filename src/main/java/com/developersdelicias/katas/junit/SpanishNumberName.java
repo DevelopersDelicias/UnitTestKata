@@ -75,12 +75,19 @@ public class SpanishNumberName {
 		long currentValue = this.value;
 
 		if (currentValue >= 1_000_000) {
-			long millionPart = currentValue / 1_000_000;
+			final String millionName = millionName(currentValue);
 
-			return millionPart == 1 ? "Un millón" : thousandsCentsTensAndUnits(millionPart) + " millones";
+			return isDivisibleBy(currentValue, 1_000_000) ? millionName :
+					millionName + " " + thousandsCentsTensAndUnits(currentValue % 1_000_000).toLowerCase();
 		}
 
 		return thousandsCentsTensAndUnits(currentValue);
+	}
+
+	private String millionName(long currentValue) {
+		long millionPart = currentValue / 1_000_000;
+
+		return millionPart == 1 ? "Un millón" : thousandsCentsTensAndUnits(millionPart) + " millones";
 	}
 
 	private String thousandsCentsTensAndUnits(long currentValue) {

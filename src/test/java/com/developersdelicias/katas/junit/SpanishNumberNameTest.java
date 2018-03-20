@@ -194,8 +194,11 @@ public class SpanishNumberNameTest {
 				number(1_000_000, "Un millón"),
 				number(2_000_000, "Dos millones"),
 				number(3_000_000, "Tres millones"),
+				number(9_999_999, "Nueve millones novecientos noventa y nueve mil novecientos noventa y nueve"),
 				number(999_000_000, "Novecientos noventa y nueve millones"),
 				number(999_999_000_000L, "Novecientos noventa y nueve mil novecientos noventa y nueve millones"),
+				number(999_999_999_999L, "Novecientos noventa y nueve mil novecientos noventa y nueve millones " +
+						"novecientos noventa y nueve mil novecientos noventa y nueve"),
 		};
 	}
 
