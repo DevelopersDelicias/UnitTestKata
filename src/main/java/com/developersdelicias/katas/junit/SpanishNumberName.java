@@ -4,8 +4,9 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class SpanishNumberName {
-	private static final int THOUSAND = 1000;
+	private static final int ONE_THOUSAND = 1000;
 	private static final Map<Long, String> NUMBER_NAMES = createNumberNamesMap();
+	private static final int ONE_MILLION = 1_000_000;
 	private final long value;
 	private static final String THOUSAND_NAME = "Mil";
 
@@ -74,51 +75,60 @@ public class SpanishNumberName {
 
 		long currentValue = this.value;
 
-		if (currentValue >= 1_000_000) {
-			final String millionName = millionName(currentValue);
+		if (currentValue >= ONE_MILLION) {
+			final String millions = millionsOf(currentValue);
 
-			return isDivisibleBy(currentValue, 1_000_000) ? millionName :
-					millionName + " " + thousandsCentsTensAndUnits(currentValue % 1_000_000).toLowerCase();
+			final long thousands = currentValue % ONE_MILLION;
+			return isOneMillion(currentValue) ? millions :
+					millions + " " + fromThousands(thousands).toLowerCase();
 		}
 
-		return thousandsCentsTensAndUnits(currentValue);
+		return fromThousands(currentValue);
 	}
 
-	private String millionName(long currentValue) {
-		long millionPart = currentValue / 1_000_000;
-
-		return millionPart == 1 ? "Un millón" : thousandsCentsTensAndUnits(millionPart) + " millones";
+	private boolean isOneMillion(long currentValue) {
+		return isDivisibleBy(currentValue, ONE_MILLION);
 	}
 
-	private String thousandsCentsTensAndUnits(long currentValue) {
-		long thousands = withoutRemaining(currentValue, THOUSAND);
-		if (thousands >= THOUSAND) {
+	private String millionsOf(long currentValue) {
+		long millions = currentValue / ONE_MILLION;
+		return millions == 1 ? "Un millón" : fromThousands(millions) + " millones";
+	}
+
+	private String fromThousands(long currentValue) {
+		long thousands = withoutRemaining(currentValue, ONE_THOUSAND);
+		if (thousands >= ONE_THOUSAND) {
 			String thousandName = thousandNameFor(thousands);
-			if (isDivisibleBy(currentValue, THOUSAND))
+			if (isOneThousand(currentValue))
 				return thousandName;
-			return thousandName + " " + centsTensAndUnits(currentValue % THOUSAND).toLowerCase();
+			final long hundreds = currentValue % ONE_THOUSAND;
+			return thousandName + " " + hundredsTensAndUnits(hundreds).toLowerCase();
 		}
 
-		return centsTensAndUnits(currentValue);
+		return hundredsTensAndUnits(currentValue);
+	}
+
+	private boolean isOneThousand(long currentValue) {
+		return isDivisibleBy(currentValue, ONE_THOUSAND);
 	}
 
 	private String thousandNameFor(long thousands) {
-		return thousands == THOUSAND
+		return thousands == ONE_THOUSAND
 				? THOUSAND_NAME
-				: centsTensAndUnits(thousands / THOUSAND) + " " + THOUSAND_NAME.toLowerCase();
+				: hundredsTensAndUnits(thousands / ONE_THOUSAND) + " " + THOUSAND_NAME.toLowerCase();
 	}
 
 	private boolean isDivisibleBy(long currentValue, int divisor) {
 		return currentValue % divisor == 0;
 	}
 
-	private String centsTensAndUnits(long currentValue) {
+	private String hundredsTensAndUnits(long currentValue) {
 		if (nameOf(currentValue) != null)
 			return nameOf(currentValue);
 
-		long cent = withoutRemaining(currentValue, 100);
-		if (isCent(cent)) {
-			return centPlusElse(cent, currentValue);
+		long hundreds = withoutRemaining(currentValue, 100);
+		if (isHundred(hundreds)) {
+			return hundredsTensAndUnits(hundreds, currentValue);
 		}
 		return unitsOrTens(currentValue);
 	}
@@ -135,32 +145,32 @@ public class SpanishNumberName {
 		return currentName() != null;
 	}
 
-	private String centPlusElse(long cent, long currentValue) {
-		return centName(cent) + " " + unitsOrTens(currentValue % cent).toLowerCase();
+	private String hundredsTensAndUnits(long hundreds, long currentValue) {
+		final long tens = currentValue % hundreds;
+		return hundredsOf(hundreds) + " " + unitsOrTens(tens).toLowerCase();
 	}
 
-	private boolean isCent(long cent) {
+	private boolean isHundred(long cent) {
 		return cent >= 100;
 	}
 
-	private String centName(long cent) {
-		if (cent == 100)
-			return "Ciento";
-		return nameOf(cent);
+	private String hundredsOf(long hundreds) {
+		return hundreds == 100 ? "Ciento" : nameOf(hundreds);
 	}
 
 	private String unitsOrTens(long currentValue) {
 		String name = nameOf(currentValue);
 
-		if (name == null) {
-			long aTen = withoutRemaining(currentValue, 10);
-			return tenPlusUnits(aTen, currentValue);
-		}
-		return name;
+		if (name != null)
+			return name;
+
+		long tens = withoutRemaining(currentValue, 10);
+		return tensAndUnits(tens, currentValue);
 	}
 
-	private String tenPlusUnits(long aTen, long currentValue) {
-		return nameOf(aTen) + " y " + nameOf(currentValue % aTen).toLowerCase();
+	private String tensAndUnits(long tens, long currentValue) {
+		final long units = currentValue % tens;
+		return nameOf(tens) + " y " + nameOf(units).toLowerCase();
 	}
 
 	private String nameOf(long number) {
