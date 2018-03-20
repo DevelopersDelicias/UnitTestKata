@@ -15,7 +15,7 @@ public class SpanishNumberNameTest {
 	@Test
 	@Parameters
 	@TestCaseName("Name of {0} is {1}")
-	public void can_say_its_name(int number, String expectedName) {
+	public void can_say_its_name(long number, String expectedName) {
 		assertThat(
 				String.format("Name of %d should be %s", number, expectedName),
 				nameOf(number),
@@ -195,14 +195,15 @@ public class SpanishNumberNameTest {
 				number(2_000_000, "Dos millones"),
 				number(3_000_000, "Tres millones"),
 				number(999_000_000, "Novecientos noventa y nueve millones"),
+				number(999_999_000_000L, "Novecientos noventa y nueve mil novecientos noventa y nueve millones"),
 		};
 	}
 
-	private Object[] number(int number, String name) {
+	private Object[] number(long number, String name) {
 		return new Object[]{number, name};
 	}
 
-	private String nameOf(int value) {
+	private String nameOf(long value) {
 		return SpanishNumberName.of(value).name();
 	}
 }
