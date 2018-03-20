@@ -161,6 +161,16 @@ public class SpanishNumberNameTest {
 				number(1011, "Mil once"),
 				number(1099, "Mil noventa y nueve"),
 				number(1100, "Mil cien"),
+				number(1111, "Mil ciento once"),
+				number(1230, "Mil doscientos treinta"),
+				number(1327, "Mil trescientos veintisiete"),
+				number(1408, "Mil cuatrocientos ocho"),
+				number(1500, "Mil quinientos"),
+				number(1684, "Mil seiscientos ochenta y cuatro"),
+				number(1780, "Mil setecientos ochenta"),
+				number(1895, "Mil ochocientos noventa y cinco"),
+				number(1985, "Mil novecientos ochenta y cinco"),
+				number(1999, "Mil novecientos noventa y nueve"),
 		};
 	}
 
