@@ -72,15 +72,25 @@ public class SpanishNumberName {
 		if (hasExistingName())
 			return currentName();
 
-		int cent = makeCent();
-		if (isCent(cent)) {
-			return centPlusElse(cent);
+		int currentValue = this.value;
+		int thousands = withoutRemaining(currentValue, 1000);
+		if (thousands >= 1000) {
+			return nameOf(1000) + " " + centsTensAndUnits(currentValue % 1000).toLowerCase();
 		}
-		return unitsOrTens(this.value);
+
+		return centsTensAndUnits(currentValue);
 	}
 
-	private int makeCent() {
-		return (this.value / 100) * 100;
+	private String centsTensAndUnits(int currentValue) {
+		int cent = withoutRemaining(currentValue, 100);
+		if (isCent(cent)) {
+			return centPlusElse(cent, currentValue);
+		}
+		return unitsOrTens(currentValue);
+	}
+
+	private int withoutRemaining(int currentValue, int multiplier) {
+		return (currentValue / multiplier) * multiplier;
 	}
 
 	private String currentName() {
@@ -91,8 +101,8 @@ public class SpanishNumberName {
 		return currentName() != null;
 	}
 
-	private String centPlusElse(int cent) {
-		return centName(cent) + " " + unitsOrTens(this.value - cent).toLowerCase();
+	private String centPlusElse(int cent, int currentValue) {
+		return centName(cent) + " " + unitsOrTens(currentValue % cent).toLowerCase();
 	}
 
 	private boolean isCent(int cent) {
@@ -109,14 +119,14 @@ public class SpanishNumberName {
 		String name = nameOf(currentValue);
 
 		if (name == null) {
-			int aTen = (currentValue / 10) * 10;
+			int aTen = withoutRemaining(currentValue, 10);
 			return tenPlusUnits(aTen, currentValue);
 		}
 		return name;
 	}
 
 	private String tenPlusUnits(int aTen, int currentValue) {
-		return nameOf(aTen) + " y " + nameOf(currentValue - aTen).toLowerCase();
+		return nameOf(aTen) + " y " + nameOf(currentValue % aTen).toLowerCase();
 	}
 
 	private String nameOf(int number) {
